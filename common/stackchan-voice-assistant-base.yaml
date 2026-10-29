@@ -618,7 +618,7 @@ micro_wake_word:
     - script.execute:
         id: play_sound
         priority: true
-        sound_file: !lambda return id(wake_word_triggered_sound);
+        sound_file: !lambda return const_cast<audio::AudioFile*>(id(wake_word_triggered_sound));
     - delay: 50ms
     - voice_assistant.start:
         wake_word: !lambda return wake_word;
@@ -709,7 +709,7 @@ voice_assistant:
           - script.execute:
               id: play_sound
               priority: true
-              sound_file: !lambda return id(error_cloud_expired);
+              sound_file: !lambda return const_cast<audio::AudioFile*>(id(error_cloud_expired));
           - script.execute: draw_display
 
   on_client_connected:
